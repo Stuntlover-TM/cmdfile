@@ -1,8 +1,4 @@
 (build)
 python -m build
 
-echo [pypi] > .pypirc
-echo username = __token__ >> .pypirc
-echo password = TOKEN >> .pypirc
-
-python -m twine upload
+python -m twine upload -u __token__ -p TOKEN dist/*
