@@ -17,7 +17,7 @@ Example for using as a command:
 Hello
 ```
 
-This will run the `build` table of the build file, example build file:
+This will run the `build` table of the build file, the build file must be in the directory which you are running the script from, example build file:
 
 ```
 (build)
