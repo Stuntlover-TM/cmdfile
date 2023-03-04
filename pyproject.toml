@@ -1,0 +1,28 @@
+[project]
+name = "buildfile"
+version = "0.0.1"
+
+authors = [
+  { name="Stuntlover", email="stuntlover@aluvia.de" }
+]
+
+license = {file = "LICENSE.txt"}
+description = "Buildfile runs annoying tasks automatically."
+readme = "README.md"
+requires-python = ">=3.9"
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+
+[project.urls]
+"Homepage" = "https://github.com/Stuntlover-TM/buildfile"
+"Bug Tracker" = "https://github.com/Stuntlover-TM/buildfile/issues"
+
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
