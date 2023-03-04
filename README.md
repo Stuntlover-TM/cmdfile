@@ -1,5 +1,5 @@
 # buildfile
-Buildfile runs annoying tasks automatically.
+Buildfile runs annoying tasks automatically. [PyPI Page here](https://pypi.org/project/buildfile/)
 
 # Docs
 
