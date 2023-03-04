@@ -1,0 +1,4 @@
+(build)
+echo [pypi] > .pypirc
+echo username = __token__ >> .pypirc
+echo password = TOKEN >> .pypirc
