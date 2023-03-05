@@ -6,7 +6,9 @@ def _load(filename="build"):
         commands = {}
 
         for line in contents:
-            line = line.strip()
+            line = line.strip().split("#")[0]
+            if line.startswith("#"):
+                continue
 
             if line.startswith("(") and line.endswith(")"):
                 callname = line.replace("(", "").replace(")", "")
