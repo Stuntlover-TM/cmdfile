@@ -16,8 +16,9 @@ Example for using as a command:
 > python -m buildfile build
 Hello
 ```
+You can specify buildfile filename with the following: `python -m buildfile tablename filename`
 
-This will run the `build` table of the build file, the build file must be in the directory which you are running the script from, example build file:
+This will run the `build` table of the build file, note that the build file must be in the directory you're running the script from, example build file:
 
 ```
 (build)
