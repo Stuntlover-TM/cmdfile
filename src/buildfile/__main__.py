@@ -1,4 +1,7 @@
 import buildfile
 import sys
 
-buildfile.run(sys.argv[1])
+try:
+    buildfile.run(sys.argv[1], filename=sys.argv[2])
+except:
+    buildfile.run(sys.argv[1])
