@@ -25,11 +25,43 @@ This will run the `build` table of the build file, note that the build file must
 echo Hello
 ```
 
-`python -m buildfile build` is the equivalent of this:
+---
+
+`python -m buildfile build temp` is the equivalent of this:
 
 ```py
 import buildfile
 
-buildfile.run("build") # You can also specify buildfile filename using
-                       # buildfile.run("table_name", filename="buildfile_name")
+buildfile.run("build", filename="temp")
 ```
+
+---
+
+You can declare variables in the buildfile using:
+```
+(table)
+variable = some text
+
+echo {_variable_}
+```
+`some text`
+
+You can also declare variables like this:
+```py
+import buildfile
+
+buildfile.add_var("variable", "some text")
+buildfile.run("table")
+```
+
+And then this will also output `some text`:
+```
+(table)
+echo {_variable_}
+```
+
+---
+
+# Changelog
+## 1.1.0
+- Add variables in buildfiles and `add_var()` function
