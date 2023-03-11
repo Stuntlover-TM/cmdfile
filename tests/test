@@ -1,0 +1,8 @@
+(test)
+# Variables
+to_write = Hello there
+
+# Commands
+python -c {_python_code_} # python_code is added from the add_var() function in test.py
+
+echo {_to_write_} > test.txt # Writes Hello there to test.txt

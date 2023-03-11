@@ -1,1 +1,1 @@
-from .buildfile import run
+from .buildfile import run, add_var

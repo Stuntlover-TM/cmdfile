@@ -1,4 +1,4 @@
 import buildfile
 
-buildfile.run("test")
-buildfile.run("test2")
+buildfile.add_var("python_code", "print('Hello')")
+buildfile.run("test", filename="test")
