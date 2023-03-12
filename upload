@@ -1,4 +1,4 @@
-(build)
+(upload)
 python -m build
 
 python -m twine upload -u __token__ -p {_TOKEN_} dist/*
