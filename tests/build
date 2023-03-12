@@ -1,7 +1,0 @@
-(test)
-echo write test > tests.txt
-echo multi line write test >> tests.txt
-python -c "print('Code test')"
-
-(test2)
-echo other table
