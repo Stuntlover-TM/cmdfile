@@ -1,1 +1,1 @@
-from .cmdfile import run
+from .cmdfile import run, add_var
