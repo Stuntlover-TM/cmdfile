@@ -1,43 +1,43 @@
-# buildfile
-Buildfile runs annoying tasks automatically. [PyPI Page here](https://pypi.org/project/buildfile/)
+# cmdfile
+cmdfile runs annoying commands automatically. [PyPI Page here](https://pypi.org/project/cmdfile/)
 
 # Docs
 
 ## Installation
 
-Run `python -m pip install buildfile` in your terminal.
+Run `python -m pip install cmdfile` in your terminal.
 
 ## Usage
 
-You can use buildfile as a command, or as a module.
+You can use cmdfile as a command, or as a module.
 
 Example for using as a command:
 ```
-> python -m buildfile build
+> python -m cmdfile build
 Hello
 ```
-You can specify buildfile filename with the following: `python -m buildfile tablename filename`
+You can specify cmdfile filename with the following: `python -m cmdfile tablename filename`
 
-This will run the `build` table of the build file, note that the build file must be in the directory you're running the script from, example build file:
+This will run the `hello` table of the cmdfile, note that the build file must be in the directory you're running the script from, example cmdfile:
 
 ```
-(build)
+(hello)
 echo Hello
 ```
 
 ---
 
-`python -m buildfile build temp` is the equivalent of this:
+`python -m cmdfile check temp` is the equivalent of this:
 
 ```py
-import buildfile
+import cmdfile
 
-buildfile.run("build", filename="temp")
+cmdfile.run("check", filename="temp")
 ```
 
 ---
 
-You can declare variables in the buildfile using:
+You can declare variables in the cmdfile using:
 ```
 (table)
 variable = some text
@@ -48,10 +48,10 @@ echo {_variable_}
 
 You can also declare variables like this:
 ```py
-import buildfile
+import cmdfile
 
-buildfile.add_var("variable", "some text")
-buildfile.run("table")
+cmdfile.add_var("variable", "some text")
+cmdfile.run("table")
 ```
 
 And then this will also output `some text`:
@@ -64,4 +64,4 @@ echo {_variable_}
 
 # Changelog
 ## 1.1.0
-- Add variables in buildfiles and `add_var()` function
+- Add variables in cmdfiles and `add_var()` function
