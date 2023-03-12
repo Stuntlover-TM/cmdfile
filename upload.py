@@ -1,4 +1,4 @@
-import src.buildfile as buildfile
+import src.cmdfile as cmdfile
 
-buildfile.add_var("TOKEN", "token_here")
-buildfile.run("upload", filename="upload")
+cmdfile.add_var("TOKEN", "token_here")
+cmdfile.run("upload", filename="upload")
