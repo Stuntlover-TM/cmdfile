@@ -1,12 +1,14 @@
 import os
+import subprocess
 
-variables = {}
+variables = {"shell": ""}
 
-def _load(filename="build"):
+def _load(filename="cmdfile"):
     global variables
 
-    with open(filename, "r") as buildfile:
-        contents = buildfile.read().splitlines()
+    with open(filename, "r") as cmdfile:
+        contents = cmdfile.read().splitlines()
+        get_output = False
         commands = {}
 
         for line in contents:
@@ -14,36 +16,58 @@ def _load(filename="build"):
             if line.startswith("#"):
                 continue
 
+            if line.strip() == "":
+                continue
+
             if line.startswith("(") and line.endswith(")"):
                 callname = line.replace("(", "").replace(")", "")
                 commands[callname] = []
                 continue
 
+
             try:
                 var = line.split(" = ")
                 key = var[0]
                 value = var[1]
+
+                if value.startswith('output("') and value.rstrip().endswith('")'):
+                    get_output = True
+                    output = value.split('output("')[1].split('")')[0]
+                    value = subprocess.check_output(variables["shell"] + f" {output}", shell=True, text=True)
+
+                if not get_output:
+                    value = value.split('"')[1].split('"')[0]
+
+
                 variables[key] = value
                 is_variable = True
             except:
                 is_variable = False
 
+
             try:
                 commands[callname].append(line) if not is_variable else None
             except UnboundLocalError:
-                raise UnboundLocalError("No table to run")
+                continue
     
     return commands, variables
 
-def run(table, filename="build"):
+
+def run(table="main", filename="cmd"):
     tables, variables = _load(filename=filename)
+    shell = variables["shell"] # By default selects your default shell
     
+    for key, value in variables.items():
+        if value.endswith("}}") and value.startswith("{{"):
+            variables[key] = variables[value.replace("{{", "").replace("}}", "")]
+
     for cmd in tables[table]:
-        if "{_" and "_}" in cmd:
-            varcmd = variables[cmd.split("{_")[1].split("_}")[0]]
-            rest = cmd.split("_}")[1]
-            cmd = cmd.split("{_")[0] + varcmd + rest
-        os.system(cmd)
+        if "{{" and "}}" in cmd:
+            varcmd = variables[cmd.split("{{")[1].split("}}")[0]]
+            rest = cmd.split("}}")[1]
+            cmd = cmd.split("{{")[0] + varcmd + rest
+
+        os.system(shell + f" {cmd}")
 
 
 def add_var(key, value):
