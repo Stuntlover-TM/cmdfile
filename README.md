@@ -1,5 +1,5 @@
 # cmdfile
-cmdfile runs annoying commands automatically. [PyPI Page here](https://pypi.org/project/cmdfile/)
+cmdfile runs annoying commands automatically.
 
 # Docs
 
@@ -18,7 +18,9 @@ Hello
 ```
 You can specify cmdfile filename with the following: `python -m cmdfile tablename filename`
 
-This will run the `hello` table of the cmdfile, note that the build file must be in the directory you're running the script from, example cmdfile:
+(By default, if you simply run `python -m cmdfile`, it will run the `main` table of the `cmdfile` file)
+
+This will run the `hello` table of the cmdfile, note that the cmdfile must be in the directory you're running the script from, example cmdfile:
 
 ```
 (hello)
@@ -37,16 +39,21 @@ cmdfile.run("check", filename="temp")
 
 ---
 
+### Variables
+
 You can declare variables in the cmdfile using:
 ```
-(table)
-variable = some text
+# You can declare variables outside of tables
+# some_variable = "I'm not in any table!"
 
-echo {_variable_}
+(table)
+variable = "some text"
+
+echo {{variable}}
 ```
 `some text`
 
-You can also declare variables like this:
+You can also declare variables through code like this:
 ```py
 import cmdfile
 
@@ -57,11 +64,61 @@ cmdfile.run("table")
 And then this will also output `some text`:
 ```
 (table)
-echo {_variable_}
+echo {{variable}}
 ```
 
 ---
 
-# Changelog
-## 1.1.0
-- Add variables in cmdfiles and `add_var()` function
+### Changing the shell
+
+You can change what shell to use by changing the `shell` variable:
+```
+shell = "powershell.exe -c"
+
+[main]
+echo 'Hello' # Executes "powershell.exe -c echo 'Hello'"
+```
+
+---
+
+### Requirements
+
+Requirements are tables that run before the main table, example:
+```
+[main] a_requirement another_requirement
+# This will call a_requirement, another_requirement and main, respectively
+
+
+[a_requirement]
+# ...
+
+[another_requirement]
+# ...
+```
+
+---
+
+# Changelog for 1.2.0
+- Added "requirements", this calls other tables before running the current table, example:
+
+```
+[main] a_requirement another_requirement
+# This will call a_requirement, another_requirement and main, respectively
+
+
+[a_requirement]
+# ...
+
+[another_requirement]
+# ...
+```
+
+- You can now select the shell to use to run commands like this:
+```
+shell = "powershell.exe -c"
+
+[main]
+echo 'Hello' # Executes "powershell.exe -c echo 'Hello'"
+```
+
+- Changed variable usage from `{_varname_}` to `{{varname}}`
