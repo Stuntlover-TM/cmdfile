@@ -10,6 +10,7 @@ def _load(filename="cmdfile"):
         contents = cmdfile.read().splitlines()
         get_output = False
         commands = {}
+        requirements = {}
 
         for line in contents:
             line = line.strip().split("#")[0]
@@ -19,9 +20,11 @@ def _load(filename="cmdfile"):
             if line.strip() == "":
                 continue
 
-            if line.startswith("(") and line.endswith(")"):
-                callname = line.replace("(", "").replace(")", "")
-                commands[callname] = []
+            if line.startswith("["):
+                reqs = line.replace("[", "").replace("]", "").split(" ")
+                tablename = reqs[0]
+                del reqs[0]
+                commands[tablename] = []
                 continue
 
 
@@ -46,17 +49,15 @@ def _load(filename="cmdfile"):
 
 
             try:
-                commands[callname].append(line) if not is_variable else None
+                requirements[tablename] = reqs
+                commands[tablename].append(line) if not is_variable else None
             except UnboundLocalError:
                 continue
     
-    return commands, variables
+    return commands, variables, requirements
 
 
-def run(table="main", filename="cmd"):
-    tables, variables = _load(filename=filename)
-    shell = variables["shell"] # By default selects your default shell
-    
+def _run(table, tables, variables, shell):
     for key, value in variables.items():
         if value.endswith("}}") and value.startswith("{{"):
             variables[key] = variables[value.replace("{{", "").replace("}}", "")]
@@ -68,6 +69,16 @@ def run(table="main", filename="cmd"):
             cmd = cmd.split("{{")[0] + varcmd + rest
 
         os.system(shell + f" {cmd}")
+
+
+def run(table="main", filename="cmd"):
+    tables, variables, requirements = _load(filename=filename)
+    shell = variables["shell"]
+
+    for req in requirements[table]:
+        _run(req, tables, variables, shell)
+
+    _run(table, tables, variables, shell)
 
 
 def add_var(key, value):
