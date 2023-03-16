@@ -1,8 +1,11 @@
-(test)
-# Variables
-to_write = Hello there
+var = "a variable" # A comment
+# Another comment
 
-# Commands
-python -c {_python_code_} # python_code is added from the add_var() function in test.py
+[main] a_requirement
+echo.
+echo This is run after running "a_requirement"
+echo Variable "var" is equal to "{{var}}"
 
-echo {_to_write_} > test.txt # Writes Hello there to test.txt
+[a_requirement]
+cls
+echo This runs before "main"
