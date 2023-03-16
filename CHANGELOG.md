@@ -1,3 +1,17 @@
+# Changelog for 1.2.0
+- Added "requirements", this calls other tables before running the current table, example:
+```
+[main] a_requirement another_requirement
+# This will call a_requirement, another_requirement and main, respectively
+
+
+[a_requirement]
+# ...
+
+[another_requirement]
+# ...
+```
+
 # Changelog for 1.1.1
 - Rename buildfile to cmdfile
 
