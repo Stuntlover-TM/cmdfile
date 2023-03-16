@@ -98,6 +98,9 @@ Requirements are tables that run before the main table, example:
 
 ---
 
+# 1.2.1 Bugfix
+- Fixed filename by default being "cmd" and not "cmdfile"
+
 # Changelog for 1.2.0
 - Added "requirements", this calls other tables before running the current table, example:
 
@@ -122,3 +125,4 @@ echo 'Hello' # Executes "powershell.exe -c echo 'Hello'"
 ```
 
 - Changed variable usage from `{_varname_}` to `{{varname}}`
+
