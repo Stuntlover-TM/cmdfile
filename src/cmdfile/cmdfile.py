@@ -71,7 +71,7 @@ def _run(table, tables, variables, shell):
         os.system(shell + f" {cmd}")
 
 
-def run(table="main", filename="cmd"):
+def run(table="main", filename="cmdfile"):
     tables, variables, requirements = _load(filename=filename)
     shell = variables["shell"]
 
