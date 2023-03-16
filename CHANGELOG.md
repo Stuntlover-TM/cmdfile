@@ -19,7 +19,7 @@ shell = "powershell.exe -c"
 echo 'Hello' # Executes "powershell.exe -c echo 'Hello'"
 ```
 
-- Changed variable usage from {_varname_} to {{varname}}
+- Changed variable usage from `{_varname_}` to `{{varname}}`
 
 # Changelog for 1.1.1
 - Rename buildfile to cmdfile
