@@ -1,4 +1,3 @@
-import buildfile
+import cmdfile
 
-buildfile.add_var("python_code", "print('Hello')")
-buildfile.run("test", filename="test")
+cmdfile.run(filename="test") # Runs the "main" table by default
