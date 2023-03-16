@@ -11,6 +11,13 @@
 [another_requirement]
 # ...
 ```
+- You can now select the shell to use to run commands like this:
+```
+shell = "powershell.exe -c"
+
+[main]
+echo 'Hello' # Executes "powershell.exe -c echo 'Hello'"
+```
 
 # Changelog for 1.1.1
 - Rename buildfile to cmdfile
