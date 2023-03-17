@@ -1,3 +1,6 @@
+# Changelog for 1.2.2 Bugfix
+- Fixed cmdfile giving error when directly calling without args
+
 # Changelog for 1.2.1 Bugfix
 - Fixed filename by default being "cmd" and not "cmdfile"
 
